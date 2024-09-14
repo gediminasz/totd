@@ -1,5 +1,6 @@
 import { Component, render } from 'preact';
 import { html } from 'htm/preact';
+import { Chance } from 'chance';
 
 import { TRACKS } from './content/ams2.js';
 
@@ -27,9 +28,8 @@ class App extends Component {
     }
 
     #selectTrack(tracks, date) {
-        const k = date.getYear() * date.getMonth() * date.getDate();
-        const trackIndex = k % tracks.length;
-        return tracks[trackIndex];
+        const seed = date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate();
+        return new Chance(seed).pickone(tracks);
     }
 
     #changeDate(delta) {
