@@ -4,17 +4,22 @@ import { html } from 'htm/preact';
 import { TRACKS } from './content/ams2.js';
 
 class App extends Component {
-    constructor({ tracks, date }) {
+    constructor({ game, tracks }) {
         super();
-        const trackOfTheDay = this.#selectTrack(tracks, date);
-        this.state = { tracks, date, trackOfTheDay };
+        this.state = { game, tracks, date: new Date() };
     }
 
     render() {
-        const { location, track, layout } = this.state.trackOfTheDay;
+        const { game, tracks, date } = this.state;
+        const { location, track, layout } = this.#selectTrack(tracks, date);
         return html`
         <div class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column">
-            <div>${this.state.date.toDateString()}</div>
+            <p>Track of the Day • ${game}</p>
+            <div class="btn-group">
+                <button class="btn btn-outline-light" onclick=${() => this.#changeDate(-1)}>◁</button>
+                <button class="btn btn-outline-light" style="width: 12em;" onclick=${() => this.setState({ date: new Date() })}>${date.toDateString()}</button>
+                <button class="btn btn-outline-light" onclick=${() => this.#changeDate(+1)}>▷</button>
+            </div>
             <h1 class="display-1">${layout}</h1>
             <div>${location} • ${track}</div>
         </div>
@@ -26,6 +31,12 @@ class App extends Component {
         const trackIndex = k % tracks.length;
         return tracks[trackIndex];
     }
+
+    #changeDate(delta) {
+        const { date } = this.state;
+        date.setDate(date.getDate() + delta);
+        this.setState({ date });
+    }
 }
 
-render(html`<${App} tracks=${TRACKS} date=${new Date()}/>`, document.body);
+render(html`<${App} game="Automobilista 2" tracks=${TRACKS} />`, document.body);
