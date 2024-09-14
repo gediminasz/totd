@@ -1,2 +1,3 @@
-# totd
-Track of the day
+# Track of the day
+
+https://gediminasz.github.io/totd/
