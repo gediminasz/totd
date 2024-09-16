@@ -15,14 +15,14 @@ class App extends Component {
         const { location, track, layout } = this.#selectTrack(tracks, date);
         return html`
         <div class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column">
-            <p>Track of the Day • ${game}</p>
+            <p class="text-center">Track of the Day • ${game}</p>
             <div class="btn-group">
                 <button class="btn btn-outline-light" onclick=${() => this.#changeDate(-1)}>◁</button>
                 <button class="btn btn-outline-light" style="width: 12em;" onclick=${() => this.setState({ date: new Date() })}>${date.toDateString()}</button>
                 <button class="btn btn-outline-light" onclick=${() => this.#changeDate(+1)}>▷</button>
             </div>
-            <h1 class="fs-1 my-5">${layout}</h1>
-            <div>${location} • ${track}</div>
+            <h1 class="fs-1 my-5 text-center">${layout}</h1>
+            <div class="text-center">${location} • ${track}</div>
         </div>
         `;
     }
