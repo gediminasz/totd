@@ -14,7 +14,7 @@ class App extends Component {
         const { game, tracks, date } = this.state;
         const { location, track, layout } = this.#selectTrack(tracks, date);
         return html`
-        <div class="container-fluid vh-100 d-flex justify-content-center align-items-center flex-column">
+        <div class="container-fluid d-flex justify-content-center align-items-center flex-column" style="height: 100dvh;">
             <p class="text-center">Track of the Day • ${game}</p>
             <div class="btn-group">
                 <button class="btn btn-outline-light" onclick=${() => this.#changeDate(-1)}>◁</button>
