@@ -21,7 +21,9 @@ class App extends Component {
                 <button class="btn btn-outline-light" style="width: 12em;" onclick=${() => this.setState({ date: new Date() })}>${date.toDateString()}</button>
                 <button class="btn btn-outline-light" onclick=${() => this.#changeDate(+1)}>▷</button>
             </div>
-            <div class="fs-1 text-center align-content-center m-0" style="height: 5em;">${layout}</div>
+            <div class="fs-1 d-flex align-items-center justify-content-center" style="height: 5em;">
+                <div class="text-center">${layout}</div>
+            </div>
             <div class="text-center">${location} • ${track}</div>
         </div>
         `;
